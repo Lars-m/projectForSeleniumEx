@@ -1,0 +1,14 @@
+## IDE
+.vscode
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Transpiled
+## Included in this version
+## bundle.*
+
+# npm
+node_modules

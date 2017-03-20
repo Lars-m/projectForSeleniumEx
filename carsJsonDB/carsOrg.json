@@ -1,0 +1,49 @@
+{
+  "cars": [
+    {
+      "id": 936,
+      "year": 2002,
+      "registered": "2002-04-25",
+      "make": "Ford",
+      "model": "E350",
+      "description": "ac, abs, moon",
+      "price": 3000
+    },
+    {
+      "id": 938,
+      "year": 1996,
+      "registered": "1999-04-11",
+      "make": "Jeep",
+      "model": "Grand Cherokee",
+      "description": "Air, moon roof, loaded",
+      "price": 4799
+    },
+    {
+      "id": 939,
+      "year": 2002,
+      "registered": "2002-04-25",
+      "make": "Ford",
+      "model": "E350",
+      "description": "ac, abs, moon",
+      "price": 3000
+    },
+    {
+      "id": 940,
+      "year": 2005,
+      "registered": "2005-06-01T00:00:00.000Z",
+      "make": "Volvo",
+      "model": "V70",
+      "description": "Super cool car",
+      "price": 34000
+    },
+    {
+      "id": 941,
+      "year": 1999,
+      "registered": "2005-06-14T00:00:00.000Z",
+      "make": "Suzuki",
+      "model": "Ignis",
+      "description": "4wd",
+      "price": 12000
+    }
+  ]
+}
