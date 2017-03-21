@@ -3,7 +3,7 @@ var app = express()
 var path = require("path");
 var fs = require("fs-extra");
 
-fs.copy(path.join(__dirname, "carsOrg.json"), path.join(__dirname, "cars.json"), err => {
+fs.copy(path.join(__dirname, "carsJsonDB","carsOrg.json"), path.join(__dirname, "carsJsonDB","cars.json"), err => {
     console.log("Data was reset");
   });
 
@@ -11,7 +11,7 @@ app.use(express.static(__dirname));
 
 app.get("/reset", (req, res) => {
 
-  fs.copy(path.join(__dirname, "carsOrg.json"), path.join(__dirname, "cars.json"), err => {
+  fs.copy(path.join(__dirname, "carsJsonDB","carsOrg.json"), path.join(__dirname,"carsJsonDB", "cars.json"), err => {
     console.log("Data was reset to original values");
     err ? res.end(500) : res.redirect("/");
   });

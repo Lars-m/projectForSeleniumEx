@@ -3,19 +3,19 @@
     {
       "id": 936,
       "year": 2002,
-      "registered": "2002-04-25T00:00:00.000Z",
+      "registered": "2002-04-25",
       "make": "Ford",
       "model": "E350",
-      "description": "Cool car",
+      "description": "ac, abs, moon",
       "price": 3000
     },
     {
       "id": 938,
       "year": 1996,
-      "registered": "1999-04-11T00:00:00.000Z",
+      "registered": "1999-04-11",
       "make": "Jeep",
       "model": "Grand Cherokee",
-      "description": "Cool car",
+      "description": "Air, moon roof, loaded",
       "price": 4799
     },
     {
@@ -44,15 +44,6 @@
       "model": "Ignis",
       "description": "4wd",
       "price": 12000
-    },
-    {
-      "id": 942,
-      "year": 2008,
-      "registered": "2002-05-04T22:00:00.000Z",
-      "make": "Kia",
-      "model": "Rio",
-      "description": "As new",
-      "price": 3100
     }
   ]
 }
