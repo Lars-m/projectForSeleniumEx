@@ -33,7 +33,7 @@ export default class CarDetails extends Component {
   }
 
   clearFields() {
-    this.setState({ selectedCar: this.getEmptyCar(),error:"" });
+    this.setState({ selectedCar: this.getEmptyCar(), error: "" });
   }
 
   //This requires id's = property name in car class
@@ -47,7 +47,7 @@ export default class CarDetails extends Component {
   saveCar(car) {
     for (let prop in car) {
       if (car[prop] === "" && prop !== "id") {
-        this.setState({error:"All fields are required" })
+        this.setState({ error: "All fields are required" })
         return;
       }
     }
@@ -55,6 +55,14 @@ export default class CarDetails extends Component {
     car.year = Number(car.year);
     car.registered = new Date(car.registered);
     car.price = Number(car.price);
+    if (Object.prototype.toString.call(car.registered) === "[object Date]") {
+      // it is a date, but is it a valid date?
+      if (isNaN(car.registered.getTime())) {
+        this.setState({ error: "Date must be on the form (yyyy-dd-mm)" })
+        car.registered = "";
+        return;
+      }
+    }
     this.props.saveCar(Object.assign({}, car));
     this.clearFields();
   }
@@ -69,22 +77,22 @@ export default class CarDetails extends Component {
             <legend>Car Details {id}</legend>
             <Input id="id" type="text" value={selectedCar.id} label="Id" />
             <Input id="year" type="number" value={selectedCar.year} onEditField={this.onEditField} label="Year" />
-            <Input id="registered" type="date" label="Registered"
-              value={this.convertDate(selectedCar.registered)} onEditField={this.onEditField} />
+            <Input id="registered" type="text" label="Registered" placeholder="yyyy-dd-mm"
+              value={selectedCar.registered} onEditField={this.onEditField} />
             <Input id="make" type="text" value={selectedCar.make} onEditField={this.onEditField} label="Make" />
             <Input id="model" type="text" value={selectedCar.model} onEditField={this.onEditField} label="Model" />
             <Input id="description" type="text" value={selectedCar.description} onEditField={this.onEditField} label="Description" />
-            <Input id="price" type="text" value={selectedCar.price} onEditField={this.onEditField} label="Price" />
+            <Input id="price" type="number" value={selectedCar.price} onEditField={this.onEditField} label="Price" />
             <div className="form-group">
               <div className="col-md-12">
-                <button type="button" id="New" onClick={this.clearFields.bind(this)} className="btn btn-primary">New Car</button> &nbsp;
-              <button type="button" id="Save" onClick={this.saveCar.bind(this, selectedCar)} className="btn btn-success">Save Car</button> &nbsp;
+                <button type="button" id="new" onClick={this.clearFields.bind(this)} className="btn btn-primary">New Car</button> &nbsp;
+              <button type="button" id="save" onClick={this.saveCar.bind(this, selectedCar)} className="btn btn-success">Save Car</button> &nbsp;
               <button type="button" id="cancel" onClick={this.clearFields.bind(this)} className="btn btn-default">Cancel</button>
               </div>
             </div>
           </fieldset>
         </form>
-        <p style={{color:"red"}}>{this.state.error}</p>
+        <p id="submiterr" style={{ color: "red" }}>{this.state.error}</p>
       </div>
     );
   }

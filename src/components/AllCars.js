@@ -24,9 +24,14 @@ export default class AllCars extends Component {
   sortColumn(e) {
     e.preventDefault();
     let col = e.target.id;
+    let pos = col.indexOf("_");
+    if(pos === -1) {
+      return //Not a sortable column
+    }
+    let id = col.substring(pos+1);
     let cars = this.props.carfactory.cars;
     let sortDirection = this.state.sortAccending;
-    let sorted = sortDirection ? _.sortBy(cars, col) : _.sortBy(cars, col).reverse();
+    let sorted = sortDirection ? _.sortBy(cars, id) : _.sortBy(cars, id).reverse();
     this.setState({
       filteredCars: sorted,
       sortAccending: !this.state.sortAccending
@@ -61,22 +66,22 @@ export default class AllCars extends Component {
     var tr = cars.map((car) => <TableRow key={car.id} car={car} carToEdit={this.props.carToEdit} carToDelete={this.props.carToDelete}/>)
     return (
       <div>
-        <input type='text' placeholder="Enter filter text" onInput={this.filterCars} />
+        <input type='text' id="filter" placeholder="Enter filter text" onInput={this.filterCars} />
         <IntlProvider locale="da">
           <table className="table">
-            <thead onClick={this.sortColumn.bind(this)}>
+            <thead style={{color: "darkGray"}} onClick={this.sortColumn.bind(this)}>
               <tr>
                 <th>id</th>
-                <th><a id="year" href="">Year</a>
-                </th><th><a id="registered" href="">Registred</a></th>
-                <th><a href="" id="make">Make</a></th>
-                <th><a href="" id="model">Model</a></th>
-                <th><a href="" id="description">Decription</a></th>
-                <th><a href="" id="price">Price</a></th>
+                <th> Year <a href=""> <span id="h_year" className="glyphicon glyphicon-sort"></span></a></th>
+                <th> Registred <a href=""> <span id="h_registered" className="glyphicon glyphicon-sort"></span></a></th>
+                <th> Make <a href=""> <span id="h_make" className="glyphicon glyphicon-sort"></span></a></th>
+                <th> Model <a href=""> <span id="h_model" className="glyphicon glyphicon-sort"></span></a></th>
+                <th> Decription <a href=""> <span id="h_description" className="glyphicon glyphicon-sort"></span></a></th>
+                <th> Price <a href=""> <span id="h_price" className="glyphicon glyphicon-sort"></span></a></th>
                 <th>Action</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="tbodycars">
               {tr}
             </tbody>
           </table>
